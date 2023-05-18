@@ -185,9 +185,10 @@ class SearchAPISearch extends FieldPluginBase implements ContainerFactoryPluginI
       $condition_group = $this->query->createConditionGroup($group_conjunction, $group_tags);
 
       // Loop through all conditions and add them to the Group.
-      foreach ($group['conditions'] as $condition) {
-
-        $condition_group->addCondition($condition['name'], $condition['value'], $condition['operator']);
+      if (isset($group['conditions'])){
+        foreach ($group['conditions'] as $condition) {
+          $condition_group->addCondition($condition['name'], $condition['value'], $condition['operator']);
+        }
       }
 
       // Merge the single groups to the condition group.
